@@ -3,6 +3,7 @@
     <!-- <h1>{{ msg }}</h1> -->
     <video src="http://www.w3school.com.cn/i/movie.ogg" autoplay controls="controls"></video>
     {{data.name}}
+    <router-view></router-view>
   </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
     }
   },
   computed: mapState({
-    data: state => state.data,
+    data: state => state.data
   }),
   methods: {
     ...mapMutations(['fetchAlbum', 'reduce']),
