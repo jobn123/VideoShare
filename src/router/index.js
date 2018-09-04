@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Variety from '@/components/Variety'
+import Movie from '@/components/Movie'
+import Drama from '@/components/Drama'
 
 Vue.use(Router)
 
@@ -12,8 +14,9 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld,
       children: [
-        { path: '/', component: HelloWorld },
-        { path: 'variety', component: Variety }
+        { path: '/', component: Drama },
+        { path: 'variety', component: Variety },
+        { path: 'movie', component: Movie }
       ]
     }
   ]
