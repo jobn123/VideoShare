@@ -4,20 +4,11 @@
       <span class="c_album_text">选集</span>
       <span class="c_album_count">共{{ desc.eps }}集</span>
     </div>
-    <ul>
+    <ul class="album_eps">
+      <li v-for="(item, index) in edpoises" v-bind:key="item.id" @click="download">
+        {{ index + 1}}
+      </li>
     </ul>
-    <div class="album_desc">
-      <div class="album_desc_director">
-        导演：<span class="desc_190">{{ desc.director }}</span>
-      </div>
-      <div class="album_desc_actor">
-        主演：<span class="desc_190">{{ desc.cast1 }} {{ desc.cast2 }} {{ desc.cast3 }} {{ desc.cast4 }}</span>
-      </div>
-      <div class="album_desc_jj">
-        简介：<span class="desc_190">{{ desc.description }}</span>
-      </div>
-    </div>
-    <!-- <div class="desc_arrow"></div> -->
   </div>
 </template>
 
@@ -25,10 +16,15 @@
 
 export default {
   name: 'Drama',
-  props: ['desc', 'relates'],
+  props: ['desc', 'relates', 'edpoises'],
   data () {
     return {
       msg: 'Drama Page'
+    }
+  },
+  methods: {
+    download () {
+      this.$parent.downlaodApp()
     }
   },
   created () {
@@ -58,22 +54,31 @@ export default {
 .c_album_count {
   float: right
 }
-.album_desc {
-  width: 88.8%;
-  margin: 20px auto 10px auto;
-  font-size: 13px;
-  height: 114px;
-  overflow-y: hidden;
-  color: #666;
-}
-.desc_190 {
-  color: rgb(190, 190, 190)
-}
 .desc_arrow {
   width: 26px;
   height: 26px;
   background: url('../assets/arrowdoen.png');
   background-repeat: no-repeat;
   background-size: 16px 4px;
+}
+.album_eps {
+  width: 100%;
+  overflow: scroll;
+  white-space: nowrap;
+  // margin-left: 6px;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  &::-webkit-scrollbar { width: 0 !important };
+  li {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #F0F0F0;
+    font-size: 16px;
+    color: #666666;
+    margin-left: 10px;
+  }
 }
 </style>

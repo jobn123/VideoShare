@@ -8,7 +8,18 @@
       <span class="download_btn" @click="downlaodApp()">立即下载</span>
     </div>
     <!-- {{data.name}} -->
-    <router-view :desc="data"></router-view>
+    <router-view :desc="data" :edpoises="edpoises"></router-view>
+    <div class="album_desc">
+      <div class="album_desc_director">
+        导演：<span class="desc_190">{{ data.director }}</span>
+      </div>
+      <div class="album_desc_actor">
+        主演：<span class="desc_190">{{ data.cast1 }} {{ data.cast2 }} {{ data.cast3 }} {{ data.cast4 }}</span>
+      </div>
+      <div class="album_desc_jj">
+        简介：<span class="desc_190">{{ data.description }}</span>
+      </div>
+    </div>
     <div class="rectline"></div>
     <ul class="relates">
       <h2>更多影片推荐</h2>
@@ -38,7 +49,8 @@ export default {
   },
   computed: mapState({
     data: state => state.data,
-    relates: state => state.relates
+    relates: state => state.relates,
+    edpoises: state => state.edpoises
   }),
   methods: {
     ...mapMutations(['fetchAlbum', 'reduce']),
@@ -147,5 +159,16 @@ video {
   height: 100%;
   float: right;
   width: 160px;
+}
+.album_desc {
+  width: 88.8%;
+  margin: 0px auto 10px auto;
+  font-size: 13px;
+  height: 114px;
+  overflow-y: hidden;
+  color: #666;
+}
+.desc_190 {
+  color: rgb(190, 190, 190)
 }
 </style>
