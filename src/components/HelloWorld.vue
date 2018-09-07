@@ -8,7 +8,7 @@
       <span class="download_btn" @click="downlaodApp()">立即下载</span>
     </div>
     <!-- {{data.name}} -->
-    <router-view :desc="data" :edpoises="edpoises"></router-view>
+    <router-view :desc="data" :edpoises="edpoises" active="15"></router-view>
     <div class="album_desc">
       <div class="album_desc_director">
         导演：<span class="desc_190">{{ data.director }}</span>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 import store from '@/store/index'
 
 import { mapMutations, mapState, mapActions } from 'vuex'
@@ -43,7 +45,6 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      title: '最强大脑  第13期：脑王终极战!卫冕...',
       msg: 'Welcome to Your Vue.js App'
     }
   },
@@ -52,6 +53,49 @@ export default {
     relates: state => state.relates,
     edpoises: state => state.edpoises
   }),
+  watch: {
+    data (val) {
+      // keywordsMeta
+      var keywordsMeta = `<meta data-vue-meta="true" itemprop="keywords" name="keywords" content="${val.description} ,${val.cast1}, ${val.cast2}" />`
+      // descriptionMeta
+      var descriptionMeta = `<meta data-vue-meta="true" itemprop="description" name="description" content="${val.description}" />`
+      // titleMeta
+      var titleMeta = `<meta data-vue-meta="true" property="og:title" content="${val.name}" />`
+      // imageMeta
+      var imageMeta = `<meta data-vue-meta="true" property="og:image" content="${val.landscape_poster_s}" />`
+      // keywordsMeta['data-vue-meta'] = true
+      // keywordsMeta.itemprop = 'keywords'
+      // keywordsMeta.name = 'keywords'
+      // keywordsMeta.content = val.description + val.cast1 + val.cast2
+      // descriptionMeta
+      // var descriptionMeta = document.createElement('meta')
+      // descriptionMeta['data-vue-meta'] = true
+      // descriptionMeta.itemprop = 'description'
+      // descriptionMeta.name = 'description'
+      // descriptionMeta.content = val.description
+      // titleMeta
+      // var titleMeta = document.createElement('meta')
+      // titleMeta['data-vue-meta'] = true
+      // titleMeta.property = 'og:title'
+      // titleMeta.content = val.name
+      // imageMeta
+      // var imageMeta = document.createElement('meta')
+      // imageMeta['data-vue-meta'] = true
+      // imageMeta.property = 'og:image'
+      // imageMeta.content = val.landscape_poster_s
+
+      // document.getElementsByTagName('head')[0].appendChild(keywordsMeta)
+      // document.getElementsByTagName('head')[0].appendChild(descriptionMeta)
+      // document.getElementsByTagName('head')[0].appendChild(titleMeta)
+      // document.getElementsByTagName('head')[0].appendChild(imageMeta)
+      // var a = $('head')[0]
+      // a.prepend(keywordsMeta)
+      $('head').prepend(imageMeta)
+      $('head').prepend(titleMeta)
+      $('head').prepend(descriptionMeta)
+      $('head').prepend(keywordsMeta)
+    }
+  },
   methods: {
     ...mapMutations(['fetchAlbum', 'reduce']),
     ...mapActions(['fetchAlbumAction', 'reduceAction', 'fetchRelatesAction']),

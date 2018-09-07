@@ -4,9 +4,9 @@
       <span class="c_album_text">选集</span>
       <span class="c_album_count">共{{ desc.eps }}集</span>
     </div>
-    <ul class="album_eps">
-      <li v-for="(item, index) in edpoises" v-bind:key="item.id" @click="download">
-        {{ index + 1}}
+    <ul class="album_eps" ref="li" id="ss">
+      <li v-for="(item, index) in edpoises" v-bind:key="item.id" @click="download" v-bind:class="{ active: active === index }">
+        {{ index + 1 }}
       </li>
     </ul>
   </div>
@@ -19,12 +19,20 @@ export default {
   props: ['desc', 'relates', 'edpoises'],
   data () {
     return {
+      active: 0,
       msg: 'Drama Page'
     }
   },
   methods: {
     download () {
       this.$parent.downlaodApp()
+    }
+  },
+  watch: {
+    edpoises () {
+      console.log(this.edpoises.length)
+      // this.$refs.li.scrollLeft = 500
+      document.getElementById('ss').scrollLeft = 500
     }
   },
   created () {
@@ -79,6 +87,9 @@ export default {
     font-size: 16px;
     color: #666666;
     margin-left: 10px;
+  }
+  .active {
+    color: #0BBF06;
   }
 }
 </style>
