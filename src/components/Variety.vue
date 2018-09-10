@@ -22,6 +22,27 @@ export default {
       this.$parent.downlaodApp()
     }
   },
+  watch: {
+    edpoises () {
+      console.log(this.edpoises.length)
+      // this.$refs.li.scrollLeft = 500
+      // document.getElementById('ss').scrollLeft = 500
+      let edpoises = JSON.parse(JSON.stringify(this.edpoises))
+      edpoises.sort((a, b) => {
+        let nameA = a.name.replace(/[^0-9]/ig, '')
+        let nameB = b.name.replace(/[^0-9]/ig, '')
+        if (nameA < nameB) {
+          return -1
+        }
+        if (nameA > nameB) {
+          return 1
+        }
+        return 0
+      })
+      let url = edpoises[0].download[0].link
+      this.$parent.setUrl(url)
+    }
+  },
   data () {
     return {
       msg: 'Variety Page'
@@ -32,6 +53,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+.c_album_text {
+  float: left
+}
+.c_album_count {
+  float: right
+}
 .album_v_eps {
   width: 100%;
   overflow: scroll;

@@ -2,7 +2,7 @@
   <div class="hello">
     <!-- <h1>{{ msg }}</h1> -->
     <nav>{{ data.name }}</nav>
-    <video src="http://player.vimeo.com/external/280465503.sd.mp4?s=341df088f14a32ca2ac9ef39bbae3afea7e5bdde&profile_id=165&oauth2_token_id=950844343" autoplay controls="controls"></video>
+    <video :src="url" autoplay controls="controls"></video>
     <div class="d_download">
       <span class="download_text">更多中国影视剧尽在“华语影视”</span>
       <span class="download_btn" @click="downlaodApp()">立即下载</span>
@@ -45,7 +45,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      url: ''
     }
   },
   computed: mapState({
@@ -109,6 +110,9 @@ export default {
       } else if (isiOS) {
         return window.open('http://google.com')
       }
+    },
+    setUrl (url) {
+      this.url = url
     }
   },
   store,
