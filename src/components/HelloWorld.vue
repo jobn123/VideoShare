@@ -8,7 +8,7 @@
       <span class="download_btn" @click="downlaodApp()">立即下载</span>
     </div>
     <!-- {{data.name}} -->
-    <router-view :desc="data" :edpoises="edpoises" active="15"></router-view>
+    <router-view :desc="data" :edpoises="edpoises" :active="index"></router-view>
     <div class="album_desc">
       <div class="album_desc_director">
         导演：<span class="desc_190">{{ data.director }}</span>
@@ -46,6 +46,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
+      index: 0,
       url: ''
     }
   },
@@ -117,7 +118,8 @@ export default {
   },
   store,
   created () {
-    let { id } = this.$route.query
+    let { id, index } = this.$route.query
+    this.index = index === undefined ? 0 : parseInt(index)
     console.log('-----vid----' + id)
     this.fetchAlbumAction(id)
     this.fetchRelatesAction(id)

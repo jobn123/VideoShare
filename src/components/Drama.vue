@@ -16,10 +16,9 @@
 
 export default {
   name: 'Drama',
-  props: ['desc', 'relates', 'edpoises'],
+  props: ['desc', 'relates', 'edpoises', 'active'],
   data () {
     return {
-      active: 0,
       msg: 'Drama Page'
     }
   },
@@ -29,7 +28,8 @@ export default {
     }
   },
   watch: {
-    edpoises () {
+    edpoises (a, b) {
+      if (b.length > 0) return
       console.log(this.edpoises.length)
       // this.$refs.li.scrollLeft = 500
       // document.getElementById('ss').scrollLeft = 500
@@ -45,7 +45,7 @@ export default {
         }
         return 0
       })
-      let url = edpoises[0].download[0].link
+      let url = edpoises[this.active].download[0].link
       this.$parent.setUrl(url)
     }
   },

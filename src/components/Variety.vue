@@ -5,7 +5,7 @@
       <span class="c_album_count">共{{ desc.eps }}集</span>
     </div>
     <ul class="album_v_eps">
-      <li v-for="item in edpoises" v-bind:key="item.id" @click="download">
+      <li v-for="(item, index) in edpoises" v-bind:key="item.id" @click="download" v-bind:class="{ active: active === index }">
         {{ item.name }}
       </li>
     </ul>
@@ -16,18 +16,19 @@
 
 export default {
   name: 'Variety',
-  props: ['desc', 'relates', 'edpoises'],
+  props: ['desc', 'relates', 'edpoises', 'active'],
   methods: {
     download () {
       this.$parent.downlaodApp()
     }
   },
   watch: {
-    edpoises () {
+    edpoises (a, b) {
+      if (b.length > 0) return
       console.log(this.edpoises.length)
       // this.$refs.li.scrollLeft = 500
       // document.getElementById('ss').scrollLeft = 500
-      let edpoises = JSON.parse(JSON.stringify(this.edpoises))
+      let edpoises = this.edpoises
       edpoises.sort((a, b) => {
         let nameA = a.name.replace(/[^0-9]/ig, '')
         let nameB = b.name.replace(/[^0-9]/ig, '')
@@ -39,7 +40,7 @@ export default {
         }
         return 0
       })
-      let url = edpoises[0].download[0].link
+      let url = edpoises[this.active].download[0].link
       this.$parent.setUrl(url)
     }
   },
@@ -81,4 +82,7 @@ export default {
     white-space: initial;
   }
 }
+.active {
+    color: #0BBF06 !important;
+  }
 </style>
