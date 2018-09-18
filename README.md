@@ -19,4 +19,14 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Params
+
+*  id: 剧集id   index: 第几集
+*  /?id=927&index=5  电视剧
+*  /?id=927          电影
+*  /variety?id=8&index=5  综艺
+
+# Screenshots
+
+![](./screenshots2.png)
+
