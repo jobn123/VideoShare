@@ -7,9 +7,16 @@
 
 export default {
   name: 'Movie',
+  props: ['edpoises'],
   data () {
     return {
       msg: 'Movie Page'
+    }
+  },
+  watch: {
+    edpoises (a, b) {
+      let url = this.edpoises.download[0].link
+      this.$parent.setUrl(url)
     }
   }
 }

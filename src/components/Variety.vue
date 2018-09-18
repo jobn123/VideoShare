@@ -54,6 +54,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+.c_album {
+  width: 88.8%;
+  margin: 12px auto;
+}
 .c_album_text {
   float: left
 }

@@ -31,16 +31,16 @@ const mutations = {
     const json = await axios.get(`http://cdn.100uu.tv/albums/${id}/?format=json&platform=mobile`)
     state.data = json.data
     // getEdipoise
-    const url = json.data.genre_id === 3 ? `https://api.vimeo.com/videos/${id}` : `https://api.vimeo.com/me/albums/${json.data.vimeo_id}/videos?direction=desc&page=1&per_page=100`
+    const url = json.data.genre_id === 3 ? `https://api.vimeo.com/videos/${json.data.vimeo_id}` : `https://api.vimeo.com/me/albums/${json.data.vimeo_id}/videos?direction=desc&page=1&per_page=100`
     const json2 = await axios.get(url, {
       headers: {'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${json.data.vimeo_token}`}
     })
-    state.edpoises = json2.data.data
+    state.edpoises = json.data.genre_id === 3 ? json2.data : json2.data.data
   },
-  async fetchRelates (state, n) {
-    const json = await axios.get('http://47.93.83.7:8000/related/927/?format=json')
+  async fetchRelates (state, id) {
+    const json = await axios.get(`http://47.93.83.7:8000/related/${id}/?format=json`)
     state.relates = json.data.data
   },
   async fetchEdpoises (state, n) {

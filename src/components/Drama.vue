@@ -33,7 +33,7 @@ export default {
       console.log(this.edpoises.length)
       // this.$refs.li.scrollLeft = 500
       // document.getElementById('ss').scrollLeft = 500
-      let edpoises = JSON.parse(JSON.stringify(this.edpoises))
+      let edpoises = this.edpoises
       edpoises.sort((a, b) => {
         let nameA = a.name.replace(/[^0-9]/ig, '')
         let nameB = b.name.replace(/[^0-9]/ig, '')

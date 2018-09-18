@@ -31,11 +31,22 @@
         </div>
       </li>
     </ul>
+    <div class="cover" v-show="tip">
+      <div class="cover-box">
+        <img src="../assets/ysdq_icon.png" alt="影视大全" class="cover_icon">
+        <p class="cover-box_p1">影视大全(海外)客户端下载</p>
+        <p class="cover-box_p2">在海外随时随地，相看就看</p>
+        <div class="d_official cover-div"><span></span><a href="" target="_blank">从官方(安卓端)下载</a></div>
+        <div class="d_googleplay cover-div"><span></span><a href="https://play.google.com/store/apps/details?id=com.movies.mobile" target="_blank">从Google Play 下载</a></div>
+        <div class="d_appstore cover-div"><span></span><a href="https://itunes.apple.com/cn/app/id1435558135?mt=8" target="_blank">从App Store 下载</a></div>
+        <div class="cover_close" @click="downlaodApp()"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
+// import $ from 'jquery'
 
 import store from '@/store/index'
 
@@ -47,7 +58,8 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       index: 0,
-      url: ''
+      url: '',
+      tip: false
     }
   },
   computed: mapState({
@@ -58,13 +70,14 @@ export default {
   watch: {
     data (val) {
       // keywordsMeta
-      var keywordsMeta = `<meta data-vue-meta="true" itemprop="keywords" name="keywords" content="${val.description} ,${val.cast1}, ${val.cast2}" />`
-      // descriptionMeta
-      var descriptionMeta = `<meta data-vue-meta="true" itemprop="description" name="description" content="${val.description}" />`
-      // titleMeta
-      var titleMeta = `<meta data-vue-meta="true" property="og:title" content="${val.name}" />`
-      // imageMeta
-      var imageMeta = `<meta data-vue-meta="true" property="og:image" content="${val.landscape_poster_s}" />`
+      // var keywordsMeta = `<meta data-vue-meta="true" itemprop="keywords" name="keywords" content="${val.description} ,${val.cast1}, ${val.cast2}" />`
+      // // descriptionMeta
+      // var descriptionMeta = `<meta data-vue-meta="true" itemprop="description" name="description" content="${val.description}" />`
+      // // titleMeta
+      // var titleMeta = `<meta data-vue-meta="true" property="og:title" content="${val.name}" />`
+      // // imageMeta
+      // var imageMeta = `<meta data-vue-meta="true" property="og:image" content="${val.landscape_poster_s}" />`
+      // var keywordsMeta = document.createElement('meta')
       // keywordsMeta['data-vue-meta'] = true
       // keywordsMeta.itemprop = 'keywords'
       // keywordsMeta.name = 'keywords'
@@ -92,10 +105,15 @@ export default {
       // document.getElementsByTagName('head')[0].appendChild(imageMeta)
       // var a = $('head')[0]
       // a.prepend(keywordsMeta)
-      $('head').prepend(imageMeta)
-      $('head').prepend(titleMeta)
-      $('head').prepend(descriptionMeta)
-      $('head').prepend(keywordsMeta)
+      // $('head').prepend(imageMeta)
+      // $('head').prepend(titleMeta)
+      // $('head').prepend(descriptionMeta)
+      // $('head').prepend(keywordsMeta)
+      let M = document.getElementsByTagName('meta')
+      M[4].setAttribute('content', val.description)
+      M[5].setAttribute('content', val.description)
+      M[6].setAttribute('content', val.name)
+      M[7].setAttribute('content', val.portrait_poster_m)
     }
   },
   methods: {
@@ -103,14 +121,20 @@ export default {
     ...mapActions(['fetchAlbumAction', 'reduceAction', 'fetchRelatesAction']),
     downlaodApp () {
       console.log('-----downlaodApp----')
-      let u = navigator.userAgent
-      let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1
-      let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
-      if (isAndroid) {
-        return window.open('http://baidu.com')
-      } else if (isiOS) {
-        return window.open('http://google.com')
+      this.tip = !this.tip
+      if (this.tip) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'auto'
       }
+      // let u = navigator.userAgent
+      // let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1
+      // let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
+      // if (isAndroid) {
+      //   return window.open('https://play.google.com/store/apps/details?id=com.movies.mobile')
+      // } else if (isiOS) {
+      //   return window.open('http://google.com')
+      // }
     },
     setUrl (url) {
       this.url = url
@@ -144,6 +168,7 @@ nav {
 video {
   width: 100%;
   height: 210px;
+  background: black;
 }
 .d_download {
   width: 100%;
@@ -208,7 +233,8 @@ video {
 .rtd {
   height: 100%;
   float: right;
-  width: 160px;
+  // width: 160px;
+  width: 150px;
 }
 .album_desc {
   width: 88.8%;
@@ -220,5 +246,90 @@ video {
 }
 .desc_190 {
   color: rgb(190, 190, 190)
+}
+.cover {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .6);
+}
+.cover-box {
+  position: absolute;
+  top: 112px;
+  text-align: center;
+  width: 100%;
+}
+.cover_icon {
+  width: 99px;
+  height: 99px;
+}
+.cover-box_p1 {
+  font-size: 22px;
+  color: #FFFFFF;
+  margin-top: 20px;
+}
+.cover-box_p2 {
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-top: 8px;
+  margin-bottom: 22px;
+}
+@mixin bgmix($w, $h, $url) {
+  display: inline-block;
+  background-image: url($url);
+  width: $w;
+  height: $h;
+  background-size: 100% 100%;
+  position: absolute;
+  top: 9px;
+  left: 38px;
+}
+.d_googleplay {
+  span {
+    @include bgmix(28px, 32px, '../assets/googleplay.png')
+  }
+  a {
+    margin-left: 16px;
+    color: #2F2D30;
+  }
+}
+.d_official {
+  span {
+    @include bgmix(28px, 28px, '../assets/ysdq_icon.png')
+  }
+  a {
+    margin-left: 16px;
+    color: #268BE0;
+  }
+}
+.d_appstore {
+  span {
+    @include bgmix(32px, 32px, '../assets/applestore.png')
+  }
+  a {
+    margin-left: 16px;
+    color: #186DF1;
+  }
+}
+.cover-div {
+  position: relative;
+  width: 280px;
+  height: 48px;
+  background: #FFFFFF;
+  border-radius: 100px;
+  margin: 18px auto;
+  a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 48px;
+  }
+}
+.cover_close {
+  background-image: url('../assets/close.png');
+  width: 33px;
+  height: 33px;
+  background-size: 100% 100%;
+  margin: 32px auto;
 }
 </style>
