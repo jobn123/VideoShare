@@ -23,7 +23,7 @@ npm run build --report
 
 *  id: 剧集id   index: 第几集
 *  /?id=927&index=5  电视剧
-*  /?id=927          电影
+*  /movie?id=927          电影
 *  /variety?id=8&index=5  综艺
 
 # Screenshots
