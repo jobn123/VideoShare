@@ -31,23 +31,23 @@
         </div>
       </li>
     </ul>
-    <div class="cover" v-show="tip">
+    <!-- <div class="cover" v-show="tip">
       <div class="cover-box">
         <img src="../assets/ysdq_icon.png" alt="影视大全" class="cover_icon">
         <p class="cover-box_p1">影视大全(海外)客户端下载</p>
         <p class="cover-box_p2">在海外随时随地，相看就看</p>
-        <div class="d_official cover-div"><span></span><a href="" target="_blank">从官方(安卓端)下载</a></div>
+        <div class="d_official cover-div"><span></span><a :href="downloadurl" target="_blank">从官方(安卓端)下载</a></div>
         <div class="d_googleplay cover-div"><span></span><a href="https://play.google.com/store/apps/details?id=com.movies.mobile" target="_blank">从Google Play 下载</a></div>
         <div class="d_appstore cover-div"><span></span><a href="https://itunes.apple.com/cn/app/id1435558135?mt=8" target="_blank">从App Store 下载</a></div>
         <div class="cover_close" @click="downlaodApp()"></div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 // import $ from 'jquery'
-
+import axios from 'axios'
 import store from '@/store/index'
 
 import { mapMutations, mapState, mapActions } from 'vuex'
@@ -59,7 +59,8 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       index: 0,
       url: '',
-      tip: false
+      tip: false,
+      downloadurl: '#'
     }
   },
   computed: mapState({
@@ -121,12 +122,13 @@ export default {
     ...mapActions(['fetchAlbumAction', 'reduceAction', 'fetchRelatesAction']),
     downlaodApp () {
       console.log('-----downlaodApp----')
-      this.tip = !this.tip
-      if (this.tip) {
-        document.body.style.overflow = 'hidden'
-      } else {
-        document.body.style.overflow = 'auto'
-      }
+      window.location.href = 'http://share.chinesetvall.com/downpage/chineseTV.html'
+      // this.tip = !this.tip
+      // if (this.tip) {
+      //   document.body.style.overflow = 'hidden'
+      // } else {
+      //   document.body.style.overflow = 'auto'
+      // }
       // let u = navigator.userAgent
       // let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1
       // let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
@@ -147,6 +149,9 @@ export default {
     console.log('-----vid----' + id)
     this.fetchAlbumAction(id)
     this.fetchRelatesAction(id)
+    axios.get('http://video.chinesetvall.com/upgrade/?format=json&platform=mobile').then(res => {
+      this.downloadurl = res.data.data.file
+    })
   }
 }
 </script>

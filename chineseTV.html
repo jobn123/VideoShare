@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>影视大全(海外)APP下载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .cover {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #FFF;
+    }
+
+    .cover-box {
+      position: absolute;
+      top: 112px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .cover_icon {
+      width: 99px;
+      height: 99px;
+    }
+
+    .cover-box_p1 {
+      font-size: 18px;
+      color: #0F73C8;
+      margin-top: 20px;
+    }
+
+    .cover-box_p2 {
+      font-size: 14px;
+      color: #0F73C8;
+      margin-top: 8px;
+      margin-bottom: 22px;
+    }
+
+    .d_googleplay span{
+      display: inline-block;
+      background-image: url('./src/assets/googleplay.png');
+      width: 28px;
+      height: 32px;
+      background-size: 100% 100%;
+      position: absolute;
+      top: 9px;
+      left: 38px;
+    }
+
+    .d_googleplay a {
+      margin-left: 16px;
+      color: #0F73C8;
+    }
+
+    .d_official span{
+      display: inline-block;
+      background-image: url('./src/assets/ysdq_icon.png');
+      width: 28px;
+      height: 28px;
+      background-size: 100% 100%;
+      position: absolute;
+      top: 9px;
+      left: 38px;
+    }
+    
+    .d_official a {
+      margin-left: 16px;
+      color: #0F73C8;
+    }
+
+    .d_appstore span{
+      display: inline-block;
+      background-image: url('./src/assets/applestore.png');
+      width: 32px;
+      height: 32px;
+      background-size: 100% 100%;
+      position: absolute;
+      top: 9px;
+      left: 38px;
+    }
+    
+    .d_appstore a {
+      margin-left: 16px;
+      color: #0F73C8;;
+    }
+
+    .cover-div {
+      position: relative;
+      width: 280px;
+      height: 48px;
+      background: #FFFFFF;
+      border-radius: 100px;
+      margin: 18px auto;
+      border: 1px solid #0F73C8;
+      border-radius: 100px;
+    }
+    
+    .cover-div a {
+      text-decoration: none;
+      display: inline-block;
+      line-height: 48px;
+    }
+
+    header {
+      position: relative;
+      width: 100%;
+      height: 46px;
+      text-align: center;
+      line-height: 46px;
+      background: #2F2D30;
+      font-size: 16px;
+      color: #FFFFFF;
+    }
+
+    header span {
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background: url('./src/assets/back.png');
+      background-size: 100% 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cover">
+    <header>
+      <span onclick="javascript:history.back()"></span>
+        影视大全(海外)APP 下载
+    </header>
+    <div class="cover-box">
+      <img src="./src/assets/ysdq_icon.png" alt="影视大全" class="cover_icon">
+      <p class="cover-box_p1">影视大全(海外)客户端下载</p>
+      <p class="cover-box_p2">在海外随时随地，相看就看</p>
+      <div class="d_official cover-div"><span></span><a :href="downloadurl" target="_blank">从官方(安卓端)下载</a></div>
+      <div class="d_googleplay cover-div"><span></span><a href="https://play.google.com/store/apps/details?id=com.movies.mobile"
+          target="_blank">从Google Play 下载</a></div>
+      <div class="d_appstore cover-div"><span></span><a href="https://itunes.apple.com/cn/app/id1435558135?mt=8" target="_blank">从App Store 下载</a></div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -28,7 +28,7 @@ const actions = {
 
 const mutations = {
   async fetchAlbum (state, id) {
-    const json = await axios.get(`http://cdn.100uu.tv/albums/${id}/?format=json&platform=mobile`)
+    const json = await axios.get(`http://video.chinesetvall.com/albums/${id}/?format=json&platform=mobile`)
     state.data = json.data
     // getEdipoise
     const url = json.data.genre_id === 3 ? `https://api.vimeo.com/videos/${json.data.vimeo_id}` : `https://api.vimeo.com/me/albums/${json.data.vimeo_id}/videos?direction=desc&page=1&per_page=100`
@@ -40,7 +40,7 @@ const mutations = {
     state.edpoises = json.data.genre_id === 3 ? json2.data : json2.data.data
   },
   async fetchRelates (state, id) {
-    const json = await axios.get(`http://47.93.83.7:8000/related/${id}/?format=json`)
+    const json = await axios.get(`http://video.chinesetvall.com/related/${id}`)
     state.relates = json.data.data
   },
   async fetchEdpoises (state, n) {
