@@ -9,7 +9,7 @@
     </div>
     <!-- {{data.name}} -->
     <router-view :desc="data" :edpoises="edpoises" :active="index"></router-view>
-    <div class="album_desc">
+    <div class="album_desc" v-show="showTitle">
       <div class="album_desc_director">
         导演：<span class="desc_190">{{ data.director }}</span>
       </div>
@@ -60,7 +60,8 @@ export default {
       index: 0,
       url: '',
       tip: false,
-      downloadurl: '#'
+      downloadurl: '#',
+      showTitle: true
     }
   },
   computed: mapState({
@@ -144,6 +145,10 @@ export default {
   },
   store,
   created () {
+    // 短视频
+    if (this.$route.path === '/short') {
+      this.showTitle = false
+    }
     let { id, index } = this.$route.query
     this.index = index === undefined ? 0 : parseInt(index)
     console.log('-----vid----' + id)

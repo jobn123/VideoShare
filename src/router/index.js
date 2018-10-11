@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Variety from '@/components/Variety'
 import Movie from '@/components/Movie'
 import Drama from '@/components/Drama'
+import Short from '@/components/Short'
 
 Vue.use(Router)
 
@@ -16,7 +17,8 @@ export default new Router({
       children: [
         { path: '/', component: Drama },
         { path: 'variety', component: Variety },
-        { path: 'movie', component: Movie }
+        { path: 'movie', component: Movie },
+        { path: 'short', component: Short }
       ]
     }
   ]
