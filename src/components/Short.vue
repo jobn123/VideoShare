@@ -8,11 +8,14 @@
 
 export default {
   name: 'Short',
-  props: ['edpoises'],
+  props: ['edpoises', 'desc'],
   data () {
     return {
       msg: 'Movie Page'
     }
+  },
+  created () {
+    debugger
   },
   watch: {
     edpoises (a, b) {

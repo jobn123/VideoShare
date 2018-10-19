@@ -19,33 +19,24 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: url('./src/assets/mb.png');
-      background-size: 100% 100%;
+      /* background: url('./src/assets/pb.png');
+      background-size: 100% 100%; */
     }
 
     .cover-box {
       position: absolute;
-      top: 112px;
-      text-align: center;
-      width: 100%;
+      top: 26.56%;
+      right: 29.64%;
     }
-
+    .cover-box .word {
+      width: 325px;
+      height: 233px;
+      background: url('./src/assets/word.png');
+      background-size: 100% 100%;
+    }
     .cover_icon {
       width: 99px;
       height: 99px;
-    }
-
-    .cover-box_p1 {
-      font-size: 18px;
-      color: #FFF;
-      margin-top: 20px;
-    }
-
-    .cover-box_p2 {
-      font-size: 14px;
-      color: #FFF;
-      margin-top: 8px;
-      margin-bottom: 22px;
     }
 
     .d_googleplay span{
@@ -60,8 +51,8 @@
     }
 
     .d_googleplay a {
-      margin-left: 16px;
-      color: #0F73C8;
+      margin-left: 82px;
+      color: #FFFFFF;
     }
 
     .d_official span{
@@ -76,8 +67,8 @@
     }
     
     .d_official a {
-      margin-left: 16px;
-      color: #0F73C8;
+      margin-left: 82px;
+      color: #FFFFFF;
     }
 
     .d_appstore span{
@@ -92,15 +83,17 @@
     }
     
     .d_appstore a {
-      margin-left: 16px;
-      color: #0F73C8;;
+      margin-left: 82px;
+      color: #FFFFFF;;
     }
 
     .cover-div {
       position: relative;
+      top: 68px;
       width: 280px;
       height: 48px;
-      background: #FFFFFF;
+      background: rgba(155,47,0,0.50);
+      color: #FFFFFF;
       border-radius: 100px;
       margin: 18px auto;
       /* border: 1px solid #0F73C8; */
@@ -112,59 +105,58 @@
       display: inline-block;
       line-height: 48px;
     }
-
-    header {
-      position: relative;
-      width: 100%;
-      height: 46px;
-      text-align: center;
-      line-height: 46px;
-      background: #2F2D30;
-      font-size: 16px;
-      color: #FFFFFF;
+    @media (max-width: 1600px) {
+      .shouji {
+        position: absolute;
+        top: 23.52%;
+        right: 8.80%;
+        width: 304px;
+        height: 563px;
+        background: url('./src/assets/shouji.png');
+        background-size: 100% 100%;
+      }
     }
-
-    header span {
-      position: absolute;
-      left: 16px;
-      top: 14px;
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      background: url('./src/assets/back.png');
-      background-size: 100% 100%;
+    @media (min-width: 1600px) {
+      .shouji {
+        position: absolute;
+        top: 23.52%;
+        right: 12.80%;
+        width: 304px;
+        height: 563px;
+        background: url('./src/assets/shouji.png');
+        background-size: 100% 100%;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="cover">
-    <!-- <header>
-      <span onclick="javascript:history.back()"></span>
-        影视大全(海外)APP 下载
-    </header> -->
+    <img src="./src/assets/pb.png" alt="loading..." style="display:block;
+    width:100%; height:100%;
+    object-fit: cover;">
     <div class="cover-box">
-      <img src="./src/assets/ysdq_icon.png" alt="影视大全" class="cover_icon">
-      <p class="cover-box_p1">影视大全(海外)客户端下载</p>
-      <p class="cover-box_p2">在海外随时随地，相看就看</p>
+      <div class="word"></div>
       <div class="d_official cover-div"><span></span><a :href="downloadurl" target="_blank">从官方(安卓端)下载</a></div>
       <div class="d_googleplay cover-div"><span></span><a href="https://play.google.com/store/apps/details?id=com.movies.mobile"
           target="_blank">从Google Play 下载</a></div>
       <div class="d_appstore cover-div"><span></span><a href="https://itunes.apple.com/cn/app/id1435558135?mt=8" target="_blank">从App Store 下载</a></div>
     </div>
+    <div class="shouji"></div>
   </div>
   <script>
-  if (!isMobile()) {
-    return window.location.href = 'http://share.chinesetvall.com/downpage/chineseTVPC.html'
-  }
-  function isMobile() {
-    if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-        return true
-    } else {
-        return false
-    }
-  }
-  </script>
+      if (isMobile()) {
+        return window.
+        location.href = 'http://share.chinesetvall.com/downpage/chineseTV.html'
+      }
+      function isMobile() {
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            return true
+        } else {
+            return false
+        }
+      }
+      </script>
 </body>
 
 </html>

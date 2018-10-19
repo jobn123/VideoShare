@@ -8,10 +8,14 @@ const state = {
   data: {},
   relates: [],
   edpoises: [],
+  shorts: [],
   count: 1
 }
 
 const actions = {
+  fetchShortAction (context, id, token) {
+    context.commit('fetchShorts', id, token)
+  },
   fetchAlbumAction (context, id) {
     context.commit('fetchAlbum', id)
   },
@@ -27,6 +31,16 @@ const actions = {
 }
 
 const mutations = {
+  async fetchShorts (state, id, token) {
+    let url = `https://api.vimeo.com/me/albums/5413270/videos?page=4&per_page=15&sort=alphabetical`
+    const json = await axios.get(url, {
+      headers: {'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer 306fd2ec2aac624b874580e2ead9f1e1`}
+    })
+    state.shorts = json.data.data
+    state.relates = json.data.data
+  },
   async fetchAlbum (state, id) {
     const json = await axios.get(`http://video.chinesetvall.com/albums/${id}/?format=json&platform=mobile`)
     state.data = json.data

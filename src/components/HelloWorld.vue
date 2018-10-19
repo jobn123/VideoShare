@@ -8,7 +8,7 @@
       <span class="download_btn" @click="downlaodApp()">立即下载</span>
     </div>
     <!-- {{data.name}} -->
-    <router-view :desc="data" :edpoises="edpoises" :active="index"></router-view>
+    <router-view :desc="data" :edpoises="edpoises" :shorts="shorts" :active="index"></router-view>
     <div class="album_desc" v-show="showTitle">
       <div class="album_desc_director">
         导演：<span class="desc_190">{{ data.director }}</span>
@@ -24,7 +24,7 @@
     <ul class="relates">
       <h2>更多影片推荐</h2>
       <li v-for="item in relates" v-bind:key="item.id" @click="downlaodApp()">
-        <img :src="item.landscape_poster_s" alt="loading..." class="relates_img">
+        <img :src="item.landscape_poster_s || item.pictures.sizes[0].link" alt="loading..." class="relates_img">
         <div class="rtd">
           <p class="rt">{{ item.name }}</p>
           <p class="rd">{{ item.description }}</p>
@@ -67,7 +67,8 @@ export default {
   computed: mapState({
     data: state => state.data,
     relates: state => state.relates,
-    edpoises: state => state.edpoises
+    edpoises: state => state.edpoises,
+    shorts: state => state.shorts
   }),
   watch: {
     data (val) {
@@ -119,8 +120,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['fetchAlbum', 'reduce']),
-    ...mapActions(['fetchAlbumAction', 'reduceAction', 'fetchRelatesAction']),
+    ...mapMutations(['fetchAlbum', 'reduce', 'fetchShorts']),
+    ...mapActions(['fetchAlbumAction', 'reduceAction', 'fetchRelatesAction', 'fetchShortAction']),
     downlaodApp () {
       console.log('-----downlaodApp----')
       window.location.href = 'http://share.chinesetvall.com/downpage/chineseTV.html'
@@ -147,7 +148,10 @@ export default {
   created () {
     // 短视频
     if (this.$route.path === '/short') {
+      debugger
       this.showTitle = false
+      this.fetchShortAction(5413270, '306fd2ec2aac624b874580e2ead9f1e1')
+      return
     }
     let { id, index } = this.$route.query
     this.index = index === undefined ? 0 : parseInt(index)
